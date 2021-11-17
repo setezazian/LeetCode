@@ -3,20 +3,36 @@
  * @return {number[]}
  */
 var sortedSquares = function(nums) {
-    // square each element in the list
-    // sort the squared list
-    var squared = [];
-    for (var i = 0; i< nums.length; i++) {
-        squared.push(nums[i]*nums[i]);
-    };
-    for (var j = 1; j < squared.length; j++) {
-        for (var i = 1; i < squared.length; i++) {
-              if (squared[i] < squared[i - 1]) {
-                var temp = squared[i];
-                squared[i] = squared[i -1];
-                squared[i - 1] = temp;
-            };  
-        };        
-    }; 
-    return squared;
+    var x = nums.length;
+    for (var k = 0; k < nums.length; k++) {
+        if (nums[k] >= 0) {
+            x = k;
+            break;
+        }
+    }
+    
+    var j = x;
+    var i = x - 1;
+    var result = [];
+    
+    while (i >= 0 && j < nums.length) {
+        if (-nums[i] < nums[j]) {
+            result.push(nums[i] * nums[i]);
+            i--;       
+        } else {
+            result.push(nums[j] * nums[j]);
+            j++;
+        }
+    }
+    while (i >= 0) {
+        result.push(nums[i] * nums[i]);
+        i--;
+    }
+    while (j < nums.length) {
+        result.push(nums[j] * nums[j]);
+        j++;
+    }
+    
+    
+    return result;
 };
