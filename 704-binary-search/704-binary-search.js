@@ -4,9 +4,17 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    for (var i = 0; i < nums.length; i++) {
-        if (nums[i] === target) {
-            return i;
+    let first = 0;
+    let last = nums.length - 1;
+    
+    while (first <= last) {
+        var mid = Math.floor((first + last) / 2);
+        if (nums[mid] < target) {
+            first = mid + 1;
+        } else if (nums[mid] > target) {
+            last = mid - 1;
+        } else {
+            return mid;
         }
     }
     return -1;
