@@ -14,20 +14,20 @@ var preorderTraversal = function(root) {
     var result = [];
     var stack = [];
 
-    if (root === null) {
+    if (!root) {
         return result;
     }
 
     stack.push(root);
 
-    while (stack.length !== 0) {
+    while (stack.length) {
         var node = stack.pop();
         result.push(node.val);
 
-        if (node.right !== null) {
+        if (node.right) {
             stack.push(node.right);
         }
-        if (node.left !== null) {
+        if (node.left) {
             stack.push(node.left);
         }
     }
